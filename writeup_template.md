@@ -39,7 +39,7 @@ The goals / steps of this project are the following:
 
 #### 1. Briefly state how you computed the camera matrix and distortion coefficients. Provide an example of a distortion corrected calibration image.
 
-The code for this step is contained in the first code cell of the IPython notebook located in "./Advanced_Lane_Detection.ipynb"   
+The code for this step is contained in the first code cell of the IPython notebook located in `./Advanced_Lane_Detection.ipynb`  
 
 I start by preparing "object points", which will be the (x, y, z) coordinates of the chessboard corners in the world. Here I am assuming the chessboard is fixed on the (x, y) plane at z=0, such that the object points are the same for each calibration image.  Thus, `objp` is just a replicated array of coordinates, and `objpoints` will be appended with a copy of it every time I successfully detect all chessboard corners in a test image.  `imgpoints` will be appended with the (x, y) pixel position of each of the corners in the image plane with each successful chessboard detection.  We have (9x6) chessboard images for the calibration step.
 
@@ -53,7 +53,7 @@ I then used the output `objpoints` and `imgpoints` to compute the camera calibra
 
 Similar to how we have undistorted the image of a chessboard which we have originally used for calibration, we will undistort the test images provided with the project.
 
-Here we make an assumption that, a single camera was used to take the pics of the chess-board from different directions in object space and also for capturing the lane image as we see in the test_images folder.
+Here we make an assumption that, a single camera was used to take the pics of the chess-board from different directions in object space and also for capturing the lane image as we see in the `test_images` folder.
 
 The [5]th cell in the IPython notebook has the code , where I undistort every test_image. Here is one such image.
 
@@ -61,7 +61,7 @@ The [5]th cell in the IPython notebook has the code , where I undistort every te
 
 #### 2. Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image.  Provide an example of a binary image result.
 
-In order to create a thresholded binary image, we use a combination of image gradients, magitude and direction of gradiants and Image Saturation channel. We derive the binary thresholded image of each of these thansforms and combine them to generate a single thresholded binary image (Check: combined_thresh function in the notebook.)
+In order to create a thresholded binary image, we use a combination of image gradients, magitude and direction of gradiants and Image Saturation channel. We derive the binary thresholded image of each of these thansforms and combine them to generate a single thresholded binary image (Check: `combined_thresh` function in the notebook.)
 
 ![alt text][image3]
 
@@ -130,21 +130,21 @@ Following is the output of the fit_visual step which is part of the pipeline, bu
 
 As described earlier, we use the functions measure_curvature and calculate_offset which are part of the Lane class.
 
- 1. measure_curvature
+ 1. `measure_curvature`
        
        In this function, we first define conversion from pixel shape to meters by using the US lane-width standards.
        We then extract, non-zero left and right lane positions
-       Followed by using the Numpy polyfit, function to fit a polygon to the detected lane lines
+       Followed by using the Numpy `polyfit`, function to fit a polygon to the detected lane lines
        We then calculate the radii of the left lane curve and right lane curve and return
        
-  2. calculate_offset
+  2. `calculate_offset`
   
-       In this function, we first calculate the vehicle center offset in pixel space, based on the left_fit and right_fit
+       In this function, we first calculate the vehicle center offset in pixel space, based on the `left_fit` and `right_fit`
        data which are saved as part of the lane detector. We then use the conversion ratio `3.7/700` to convert pixel offset to   meters.
 
 #### 6. Provide an example image of your result plotted back down onto the road such that the lane area is identified clearly.
 
-The visualizer function of the Lane Class has the code to detect lanes that incorporate curvature and calculate vehicle offset.
+The `visualizer` function of the Lane Class has the code to detect lanes that incorporate curvature and calculate vehicle offset.
 We also annotate these values per frame as part of the pipeline.
 
 Here is an example of my result on a test image:
